@@ -299,5 +299,224 @@ easy_install.py            jedi                              pexpect-4.8.0.dist-
 
 
 
+- 基本数据类型  
+1）列表
+方括号
+2）元组
+括号
+3）字典
+花括号
+4）python编程逻辑
+
+
+```
+
+None赋值给变量
+In [3]: var001 = None
+
+In [4]: print(var001)
+None
+
+In [5]:
+
+In [5]: var001 is None
+Out[5]: True
+
+
+002赋值给变量就不符合语法
+In [6]: var002 = 002
+  File "<ipython-input-6-2dd6ca7c8644>", line 1
+    var002 = 002
+               ^
+SyntaxError: invalid token
+
+
+In [7]: var002 = 2
+
+In [8]: print(var002)
+2
+
+
+布尔运算、关系运算符
+In [9]: var002 is None
+Out[9]: False
+
+In [10]: x=100
+
+In [11]: y=200
+
+In [12]: x == y
+Out[12]: False
+
+In [13]: x > y
+Out[13]: False
+
+In [14]: x < y
+Out[14]: True
+
+In [15]: x != y
+Out[15]: True
+
+
+
+
+
+
+
+xx列表
+In [16]: xx=['aa','bb','cc']
+
+In [17]: xx
+Out[17]: ['aa', 'bb', 'cc']
+
+只接受一个参数，输入两个就会出现如下报错
+In [18]: xx.append('dd','ee')
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-18-f7c9f4846b93> in <module>
+----> 1 xx.append('dd','ee')
+
+TypeError: append() takes exactly one argument (2 given)
+
+追加一个参数并打印
+In [19]: xx.append('dd')
+
+In [20]: xx
+Out[20]: ['aa', 'bb', 'cc', 'dd']
+
+In [21]: print(xx)
+['aa', 'bb', 'cc', 'dd']
+
+
+字典
+In [27]: dict001 = {'k11':'v11','k22':'v22'}
+
+In [28]: dict001
+Out[28]: {'k11': 'v11', 'k22': 'v22'}
+
+查看key对应的value
+In [29]: dict001['k11']
+Out[29]: 'v11'
+
+In [30]: dict001['k22']
+Out[30]: 'v22'
+
+修改key值
+In [31]: dict001['k22'] = 'value33'
+
+In [32]: dict001['k22']
+Out[32]: 'value33'
+
+In [33]: dict001
+Out[33]: {'k11': 'v11', 'k22': 'value33'}
+
+In [34]:
+
+
+
+
+
+
+python编程逻辑（python之禅）
+In [22]: import this
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+
+
+
+
+
+
+```
+
+
+
+
+
+
+- 高级数据类型
+collections     容器数据类型
+nametuple()     命名元组
+deque           双端队列
+Counter         计数器
+OrderedDict     有顺序的字典
+
+- 官方文档
+https://docs.python.org/zh-cn/3.7/
+
+
+
+```
+
+引入标准库deque（双端队列）
+In [34]: from collections import deque
+
+获取库的帮助
+In [35]: help(deque)
+
+创建双端队列atoz
+In [36]: atoz = deque('defg')
+
+
+In [37]: atoz
+Out[37]: deque(['d', 'e', 'f', 'g'])
+
+在队列右边侧追加h
+In [38]: atoz.append('h')
+
+In [39]: atoz
+Out[39]: deque(['d', 'e', 'f', 'g', 'h'])
+
+在队列左边追加c
+In [40]: atoz.appendleft('c')
+
+In [41]: atoz
+Out[41]: deque(['c', 'd', 'e', 'f', 'g', 'h'])
+
+
+扩展deque的左侧，通过添加iterable参数中的元素。注意，左添加时，在结果中iterable参数中的顺序将被反过来添加。
+In [42]: atoz.extendleft('ab')
+
+In [43]: atoz
+Out[43]: deque(['b', 'a', 'c', 'd', 'e', 'f', 'g', 'h'])
+
+for循环打印队列
+In [45]: for name in atoz:
+    ...:     print(name)
+    ...:
+b
+a
+c
+d
+e
+f
+g
+h
+
+In [46]:
+
+
+```
+
+
 还未更新完，待续。。。。。  
 
