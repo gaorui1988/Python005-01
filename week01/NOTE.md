@@ -9,13 +9,14 @@ GitHub使用
 
 #Git&GitHub操作指南  
 配置个人信息（多人协作情况下会知道是谁更新了代码）  
-
+```
 git config --global user.email "2295463072@qq.com"  
 git config --global user.name "gaorui"  
 
 [root@host54 python5]# git config --global --list  
 user.email=2295463072@qq.com  
 user.name=gaorui  
+```
 
 如何跟GitHub交互（免密：将公钥信息放到GitHub中，如何设置可自行百度）  
 如何从第一次拉取代码-->将代码push到自己fork的仓库中  
