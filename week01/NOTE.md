@@ -35,6 +35,7 @@ user.name=gaorui
 如何通过调整$PATH环境变量方式设置python版本优先级  
 多版本python解释器共存的问题及规避方式（注：强烈建议产线不要存在多版本）  
 pip安装python库  
+```
 [root@host54 ~]# python  
 python     python2    python2.7  python3  
 [root@host54 ~]# python -V   
@@ -52,8 +53,10 @@ lrwxrwxrwx.   1 root root           9 Apr 14  2020 python2 -> python2.7
 lrwxrwxrwx   1 root root  27 Nov 26 00:05 pip3 -> /usr/local/python3/bin/pip3 
 lrwxrwxrwx   1 root root  30 Nov 26 00:04 python3 -> /usr/local/python3/bin/python3  
 [root@host54 ~]#  
+```
 
 ipython安装及使用（python交互增强、语法高亮、命令不全等）  
+```
 [root@host54 ~]# cat /etc/profile |grep python 
 alias ipython='python3 -m IPython'  
 [root@host54 ~]#  
@@ -71,6 +74,7 @@ In [2]: print(x)
 hello,python.  
 
 In [3]:  
+```
 
 
 IDE安装及使用  
