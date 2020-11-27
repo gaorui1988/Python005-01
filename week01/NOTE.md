@@ -1,14 +1,14 @@
-学习笔记
+h1. 学习笔记
 
 
-#python训练营学习手册  
+h2. #python训练营学习手册  
 - 如何获取学分  
-GitHub使用  
-作业如何fork到自己的Github账号下，如何提交作业到fork后的仓库  
+- GitHub使用  
+- 作业如何fork到自己的Github账号下，如何提交作业到fork后的仓库  
 
 
-#Git&GitHub操作指南  
-配置个人信息（多人协作情况下会知道是谁更新了代码）  
+h2. #Git&GitHub操作指南  
+- 配置个人信息（多人协作情况下会知道是谁更新了代码）  
 ```
 git config --global user.email "2295463072@qq.com"  
 git config --global user.name "gaorui"  
@@ -18,8 +18,8 @@ user.email=2295463072@qq.com
 user.name=gaorui  
 ```
 
-如何跟GitHub交互（免密：将公钥信息放到GitHub中，如何设置可自行百度）  
-如何从第一次拉取代码-->将代码push到自己fork的仓库中  
+- 如何跟GitHub交互（免密：将公钥信息放到GitHub中，如何设置可自行百度）  
+- 如何从第一次拉取代码-->将代码push到自己fork的仓库中  
 1）pull代码（强烈建议使用免密方式，只需要第一次设置即可）  
 2）更新代码  
 3）将代码add到暂存区  
@@ -29,12 +29,12 @@ user.name=gaorui
 7）查看log（git log）  
 
 
-#第一周：从其他语言平滑迁移到python开发  
-区分多版本python  
-安装多版本python  
-如何通过调整$PATH环境变量方式设置python版本优先级  
-多版本python解释器共存的问题及规避方式（注：强烈建议产线不要存在多版本）  
-pip安装python库  
+h2. #第一周：从其他语言平滑迁移到python开发  
+- 区分多版本python  
+- 安装多版本python  
+- 如何通过调整$PATH环境变量方式设置python版本优先级  
+- 多版本python解释器共存的问题及规避方式（注：强烈建议产线不要存在多版本）  
+- pip安装python库  
 ```
 [root@host54 ~]# python  
 python     python2    python2.7  python3  
@@ -55,7 +55,7 @@ lrwxrwxrwx   1 root root  30 Nov 26 00:04 python3 -> /usr/local/python3/bin/pyth
 [root@host54 ~]#  
 ```
 
-ipython安装及使用（python交互增强、语法高亮、命令不全等）  
+- ipython安装及使用（python交互增强、语法高亮、命令不全等）  
 ```
 [root@host54 ~]# cat /etc/profile |grep python 
 alias ipython='python3 -m IPython'  
@@ -77,15 +77,15 @@ In [3]:
 ```
 
 
-IDE安装及使用  
+- IDE安装及使用  
 1）vscode安装及使用  
 2）vscode常用插件安装及使用  
 远程调试Linux：Remote - SSH  
 
-将远程服务器的公钥放到GitHub上  
-测试拉取/提交代码（正常后进入下面设置）  
-IDE安装远程插件并设置config（添加远程服务器主机信息），通过这里的配置找到远程服务器（connect to host in ）  
-IDE中从pull代码到最后push代码到GitHub仓库中  
+- 将远程服务器的公钥放到GitHub上  
+- 测试拉取/提交代码（正常后进入下面设置）  
+- IDE安装远程插件并设置config（添加远程服务器主机信息），通过这里的配置找到远程服务器（connect to host in ）  
+- IDE中从pull代码到最后push代码到GitHub仓库中  
 
 
   
