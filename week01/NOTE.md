@@ -299,14 +299,14 @@ easy_install.py            jedi                              pexpect-4.8.0.dist-
 
 
 
-- 基本数据类型  
-1）列表
-方括号
-2）元组
-括号
-3）字典
-花括号
-4）python编程逻辑
+- 基本数据类型   
+1）列表  
+方括号  
+2）元组  
+括号  
+3）字典  
+花括号  
+4）python编程逻辑  
 
 
 ```
@@ -453,14 +453,14 @@ Namespaces are one honking great idea -- let's do more of those!
 
 
 
-- 高级数据类型
-collections     容器数据类型
-nametuple()     命名元组
-deque           双端队列
-Counter         计数器
-OrderedDict     有顺序的字典
+- 高级数据类型  
+collections     容器数据类型  
+nametuple()     命名元组  
+deque           双端队列  
+Counter         计数器  
+OrderedDict     有顺序的字典  
 
-- 官方文档
+- 官方文档  
 https://docs.python.org/zh-cn/3.7/
 
 
