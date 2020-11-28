@@ -518,5 +518,53 @@ In [46]:
 ```
 
 
+- 控制流
+1）while循环（其他编程语言循环形式）
+2）for循环（python中常用循环）
+```
+
+
+while循环
+In [7]: list002 = ['aa','bb','cc']
+
+In [8]: len(list002)
+Out[8]: 3
+
+In [9]: i=0
+
+In [10]:
+
+In [10]: while i < len(list002):
+    ...:     print(list002[i])
+    ...:     i += 1
+    ...:
+aa
+bb
+cc
+
+
+for循环
+In [4]: list001 = ['aa','bb','cc']
+
+In [5]: list001
+Out[5]: ['aa', 'bb', 'cc']
+
+In [6]:
+
+In [6]: for i in list001:
+   ...:     print(i)
+   ...:
+aa
+bb
+cc
+
+```
+
+
+
+
+
+
+
 还未更新完，待续。。。。。  
 
