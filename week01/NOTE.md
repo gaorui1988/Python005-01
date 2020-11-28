@@ -566,6 +566,134 @@ cc
 
 
 
+- 自己实现一个daemon进程  
+1）跑在后台的守护进程  
+2）类似Windows中的服务  
+3）参考daemon进程的标准库（对于初学者不要自己去想象怎么实现，避免走弯路）  
+https://www.python.org/dev/peps/pep-3143/  
+https://www.jianshu.com/p/fbe51e1147af  
+https://www.jianshu.com/p/2342a9299ee0  
+https://stackoverflow.com/questions/473620/how-do-you-create-a-daemon-in-python   
+
+
+
+
+```
+//课程案例
+
+
+#!/usr/bin/env python
+
+#sys:标准的输出、错误输出
+#os:创建子进程
+#time:时间戳
+import sys
+import os
+import time
+
+#整个程序功能说明（）
+'''
+手动编写一个daemon进程
+'''
+
+
+#stdin：标准输入
+#stdout标准输出
+#stderror错误输出
+def daemonize(stdin="/dev/null", stdout="/dev/null", stderror="/dev/null"):
+    try:
+        #创建子进程
+        pid = os.fork()
+
+        if pid > 0:
+            
+            #父进程先于子进程exit,会使子进程变为孤儿进程
+            #这样子进程成功被init这个用户级守护进程收养（init是一号进程）
+            #返回值是“0”为正常退出
+            sys.exit(0)
+    
+    #捕获异常（创建子进程失败的话）
+    except OSError as err:
+        sys.stderr.write(f"_Fork #1 Failed: {0} \n")
+        #如果程序执行返回值为非0就是异常（程序运行遇到的问题）
+        sys.exit(1)
+    
+    # 从父进程环境脱离
+    # decouple from parenet enviroment
+    # chdir确认进程不占用任何目录，否则不能umount
+    os.chdir("/")
+    # 调用umask(0) 拥有写任何程序的权限，避免导致继承自父进程的umask被修改而导致自身权限不足
+    os.umask(0)
+    # setsid 被调用成功后，进程会成为新的会话租组长，与原来的对话和进程组脱离
+    os.setsid()
+
+    # 重定向标准文件描述符
+    sys.stdout.flush()
+    sys.stderr.flush()
+
+    si = open(stdin, "r")
+    so = open(stdout, "a+")
+    se = open(stderror, "w")
+
+    
+    # dup2函数原子化关闭和复制文件描述符
+    os.dup2(si.fileno(), sys.stdin.fileno())
+    os.dup2(so.fileno(), sys.stdout.fileno())
+    os.dup2(se.fileno(), sys.stderr.fileno())
+
+
+#每秒显示一个时间戳，daemon后台运行时会一直打印日志
+def test():
+    sys.stdout.write('Daemon started with pid %d\n' % os.getpid())
+    while True:
+        now = time.strftime("%X", time.localtime())
+        sys.stdout.write(f'{time.ctime()}\n')
+        # 清空缓存
+        sys.stdout.flush()
+        # 每隔1秒
+        time.sleep(1)
+
+
+
+#标准输出改成文件d1.log，一般不会在此处指定标准输出的日志文件，会在其他地方定义日志输出（如可以在本例中的"test()"函数中定义）
+if __name__ == "__main__":
+    
+    # 标准输出会追加打印到“d1.log”中
+    daemonize('/dev/null', 'd1.log', '/dev/null')
+    test()
+
+
+
+
+
+```
+
+
+- 正则表达式  
+1）通读官方文档  
+https://docs.python.org/zh-cn/3.7/library/re.html  
+
+
+
+
+
+
+```
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
