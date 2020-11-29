@@ -1,13 +1,13 @@
-学习笔记
+## 学习笔记
 
 
-#python训练营学习手册  
+## python训练营学习手册  
 - 如何获取学分  
 - GitHub使用  
 - 作业如何fork到自己的Github账号下，如何提交作业到fork后的仓库  
 
 
-#Git&GitHub操作指南  
+## Git&GitHub操作指南  
 - 配置个人信息（多人协作情况下会知道是谁更新了代码）  
 ```
 git config --global user.email "2295463072@qq.com"  
@@ -29,7 +29,7 @@ user.name=gaorui
 7）查看log（git log）  
 
 
-#第一周：从其他语言平滑迁移到python开发  
+## 第一周：从其他语言平滑迁移到python开发  
 - 区分多版本python  
 - 安装多版本python  
 - 如何通过调整$PATH环境变量方式设置python版本优先级  

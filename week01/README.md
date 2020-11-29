@@ -113,7 +113,7 @@ if __name__ == '__main__':
 
 
 
-5、想想自己工作中哪些手动的工作可以用 Python 程序自动完成，并亲自尝试一下。
+- 想想自己工作中哪些手动的工作可以用 Python 程序自动完成，并亲自尝试一下。
 ```
 python监控自定义指标并定时上报至pushgateway
 prometheus获取从pushgateway中推送上来的数据
