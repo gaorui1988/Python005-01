@@ -33,8 +33,3 @@ def log_func():
     #现在/var/log路径下创建python-2020-11-29目录(命名python-系统当前日期)
     #日志文件名：log_func.log
     logging.info('The log_func function is called')
-
-    #终端的标准输出显示log_func函数被调用时的进程pid
-    sys.stdout.write('log_func function is called [ PID : %d ]\n' % os.getpid())
-    #清理缓存
-    sys.stdout.flush()
