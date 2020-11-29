@@ -119,7 +119,7 @@ python监控自定义指标并定时上报至pushgateway
 prometheus获取从pushgateway中推送上来的数据
 grafana展示prometheus获取到的监控指标
 
-待更新。。。
+待续。。。
 
 ```
 
