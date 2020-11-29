@@ -2,6 +2,7 @@
 
 
 import os
+import sys
 import logging
 import time
 import pathlib
@@ -29,6 +30,15 @@ def log_func():
                         format="%(asctime)s [%(name)s : %(message)s]"
                         )
     logging.info('函数调用')
+    sys.stdout.write('Daemon started with pid %d\n' % os.getpid())
+    while True:
+        now = time.strftime("%X", time.localtime())
+        sys.stdout.write(f'{time.ctime()}\n')
+        # 清空缓存
+        sys.stdout.flush()
+        # 每隔1秒
+        time.sleep(1)
+
     
 if __name__ == '__main__':
     log_func()
