@@ -74,12 +74,31 @@ Python3 的六个标准数据类型中：
 
 - 编写一个函数, 当函数被调用时，将调用的时间记录在日志中, 日志文件的保存位置建议为：/var/log/python- 当前日期 /xxxx.log (此作业需提交至 GitHub)
 ```
+说明：
+main.py调用week01_log.py中定义的函数log_func()
 
+
+
+// main.py
+#!/usr/bin/env python
+
+
+from week01_log import log_func
+#import week01_log
+
+if __name__ == '__main__':
+    log_func()
+
+
+
+
+// week01_log.py
 
 #!/usr/bin/env python
 
 
 import os
+import sys
 import logging
 import time
 import pathlib
@@ -87,12 +106,11 @@ import pathlib
 
 
 def log_func():
-    #获取当前时间日期
     today = time.strftime("%Y-%m-%d", time.localtime())
     
     #文件路径
     dirPath = '/var/log/python-' + today
-    logfile = "test.log"
+    logfile = "log_func.log"
     
     #判断当前路径是否存在
     if not os.path.exists(dirPath):
@@ -106,10 +124,20 @@ def log_func():
                         datefmt='%Y-%m-%d %H:%M:%S',
                         format="%(asctime)s [%(name)s : %(message)s]"
                         )
-    logging.info('函数调用')
     
-if __name__ == '__main__':
-    log_func()
+    #log_func函数被调用时
+    #现在/var/log路径下创建python-2020-11-29目录(命名python-系统当前日期)
+    #日志文件名：log_func.log
+    logging.info('The log_func function is called')
+
+    #终端的标准输出显示log_func函数被调用时的进程pid
+    sys.stdout.write('log_func function is called [PID : %d]\n' % os.getpid())
+    #清理缓存
+    sys.stdout.flush()
+
+
+
+
 
 ```
 
