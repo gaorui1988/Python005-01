@@ -524,7 +524,7 @@ In [46]:
 ```
 
 
-while循环
+while循环打印列表中元素
 In [7]: list002 = ['aa','bb','cc']
 
 In [8]: len(list002)
@@ -541,7 +541,7 @@ bb
 cc
 
 
-for循环
+for循环打印列表中元素
 In [4]: list001 = ['aa','bb','cc']
 
 In [5]: list001
@@ -564,9 +564,45 @@ cc
 3）自定义库  
 
 
+- python标准库-日期时间处理  
+1）time：https://docs.python.org/zh-cn/3.7/library/time.html  
+2）datetime：https://docs.python.org/zh-cn/3.7/library/datetime.html  
+
+```
 
 
-- 自己实现一个daemon进程  
+
+
+
+```
+
+
+- python标准库-日志处理  
+
+```
+
+```
+
+
+
+
+- python标准库-路径处理  
+
+```
+
+
+
+
+```
+
+
+
+
+
+
+
+
+- python标准库-手动实现daemon守护进程  
 1）跑在后台的守护进程  
 2）类似Windows中的服务  
 3）参考daemon进程的标准库（对于初学者不要自己去想象怎么实现，避免走弯路）  
@@ -584,7 +620,7 @@ https://stackoverflow.com/questions/473620/how-do-you-create-a-daemon-in-python
 
 #!/usr/bin/env python
 
-#sys:标准的输出、错误输出
+#sys:标准的输入输出、错误输出
 #os:创建子进程
 #time:时间戳
 import sys
