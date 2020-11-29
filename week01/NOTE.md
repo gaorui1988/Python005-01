@@ -774,6 +774,123 @@ In [24]:
 
 
 
+
+# os模块
+
+
+In [1]: from pathlib import  *
+
+In [2]: p = Path()
+
+In [3]: p.resolve()
+Out[3]: PosixPath('/opt/test')
+
+
+
+# Path函数：显示变量中的路径
+
+# /opt/gaorui/test.py路径真实存在
+In [4]: path='/opt/gaorui/test.py'
+
+In [5]: p = Path(path)
+
+In [6]: p
+Out[6]: PosixPath('/opt/gaorui/test.py')
+
+# /opt/gaorui/test.tar.gz文件及其路径不存在
+In [7]: path='/opt/gaorui/test.tar.gz'
+
+In [8]: p = Path(path)
+
+In [9]: p
+Out[9]: PosixPath('/opt/gaorui/test.tar.gz')
+
+# 显示文件全名
+In [10]: p.name
+Out[10]: 'test.tar.gz'
+
+# stem：显示文件名（去掉后缀）
+In [11]: p.stem
+Out[11]: 'test.tar'
+
+# suffix：显示文件的最后一个后缀
+In [12]: p.suffix
+Out[12]: '.gz'
+
+# suffixes：显示文件的所有后缀
+In [13]: p.suffixes
+Out[13]: ['.tar', '.gz']
+
+# parent：显示p中目录部分
+In [14]: p.parent
+Out[14]: PosixPath('/opt/gaorui')
+
+# parents：使用for循环遍历，递归出所有目录
+In [15]: p.parents
+Out[15]: <PosixPath.parents>
+
+In [16]: for i in p.parents:
+    ...:     print(i)
+    ...:
+/opt/gaorui
+/opt
+/
+
+将p中的值以元组的方式打印
+In [17]: p.parts
+Out[17]: ('/', 'opt', 'gaorui', 'test.tar.gz')
+
+In [18]:
+
+
+
+
+
+
+In [18]: import os
+
+打印文件所在绝对路径
+In [19]: os.path.abspath('test.log')
+Out[19]: '/opt/test/test.log'
+
+将绝对路径赋值给path变量
+In [20]: path='/opt/gaorui/test.py'
+
+In [21]: p = Path(path)
+
+In [22]: p
+Out[22]: PosixPath('/opt/gaorui/test.py')
+
+In [23]: os.path.basename(p)
+Out[23]: 'test.py'
+
+In [24]: os.path.dirname(p)
+Out[24]: '/opt/gaorui'
+
+确认文件所在路径是否真实存在
+不存在返回False
+In [25]: os.path.exists('/opt/gaorui/test.py')
+Out[25]: False
+存在返回True
+In [26]: os.path.exists('/opt/test/test.log')
+Out[26]: True
+确认是否为文件
+In [27]: os.path.isfile('/opt/test/test.log')
+Out[27]: True
+确认是否为目录
+In [28]: os.path.isdir('/opt/test/test.log')
+Out[28]: False
+In [29]: os.path.isdir('/opt/test/')
+Out[29]: True
+目录拼接（相对路径/绝对路径）
+In [30]: os.path.join('dir01','dir02')
+Out[30]: 'dir01/dir02'
+In [31]: os.path.join('/dir01','dir02')
+Out[31]: '/dir01/dir02'
+
+
+
+
 ```
 
 
@@ -891,7 +1008,11 @@ if __name__ == "__main__":
 https://docs.python.org/zh-cn/3.7/library/re.html  
 
 
+
 ```
+
+
+
 
 
 ```
