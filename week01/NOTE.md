@@ -570,16 +570,136 @@ cc
 
 ```
 
+In [1]: import time
+
+In [2]: time.time()
+Out[2]: 1606608976.4738708
+
+时间格式
+In [5]: time.localtime()
+Out[5]: time.struct_time(tm_year=2020, tm_mon=11, tm_mday=29, tm_hour=8, tm_min=16, tm_sec=48, tm_wday=6, tm_yday=334, tm_isdst=0)
+
+时间格式转换
+In [6]: time.strftime("%Y-%m-%d %X",time.localtime())
+Out[6]: '2020-11-29 08:18:17'
+
+In [7]: time.strptime('2020-11-29 08:18:17',"%Y-%m-%d %X")
+Out[7]: time.struct_time(tm_year=2020, tm_mon=11, tm_mday=29, tm_hour=8, tm_min=18, tm_sec=17, tm_wday=6, tm_yday=334, tm_isdst=-1)
 
 
 
+
+
+In [1]: import datetime
+
+In [2]: from datetime import *
+
+显示当前时间
+In [3]: datetime.today()
+Out[3]: datetime.datetime(2020, 11, 29, 8, 22, 12, 693556)
+
+In [4]: datetime.now()
+Out[4]: datetime.datetime(2020, 11, 29, 8, 22, 18, 278382)
+
+
+显示前一天时间
+In [6]: datetime.today() - timedelta(days=1)
+Out[6]: datetime.datetime(2020, 11, 28, 8, 24, 15, 282718)
+
+In [7]: datetime.today() + timedelta(days=-1)
+Out[7]: datetime.datetime(2020, 11, 28, 8, 24, 25, 387577)
 
 ```
+
+
 
 
 - python标准库-日志处理  
 
 ```
+
+In [8]: import logging
+
+打印不同级别日志（默认不打印debug/info级别日志，需要修改日志参数）
+In [10]: logging.debug('debug message')
+    ...: logging.info('info message')
+    ...: logging.warning('warning message')
+    ...: logging.error('error message')
+    ...: logging.critical('critical message')
+    ...:
+WARNING:root:warning message
+ERROR:root:error message
+CRITICAL:root:critical message
+
+
+使用basicConfig函数将日志写入指定文件中（如：test.log）
+In [2]: logging.basicConfig(filename='test.log')
+
+In [3]: logging.debug('debug message')
+   ...: logging.info('info message')
+   ...: logging.warning('warning message')
+   ...: logging.error('error message')
+   ...: logging.critical('critical message')
+   ...:
+
+In [4]: exit()
+[root@host54 test]# ll
+total 8
+-rw-r--r-- 1 root root 221 Nov 27 21:44 requirements.txt
+-rw-r--r-- 1 root root  85 Nov 29 08:55 test.log
+drwxr-xr-x 6 root root  87 Nov 27 21:18 venv001
+drwxr-xr-x 6 root root  87 Nov 27 21:46 venv002
+test.log日志文件中已经成功插入内容
+[root@host54 test]# cat test.log
+WARNING:root:warning message
+ERROR:root:error message
+CRITICAL:root:critical message
+[root@host54 test]#
+
+
+
+
+
+日志文件
+打印的日志级别起始从DEBUG开始
+时间戳
+日志格式（时间戳、当前登录用户、日志级别、行号、对应级别打印的日志内容）
+In [2]: logging.basicConfig(filename='test.log',
+   ...:                     level=logging.DEBUG,
+   ...:                     datefmt='%Y-%m-%d %H:%M:%S',
+   ...:                     format='%(asctime)s %(name)-8s %(levelname)-8s [line: %(lineno)d] %(message)s'
+   ...:                     )
+
+In [3]: logging.debug('debug message')
+   ...: logging.info('info message')
+   ...: logging.warning('warning message')
+   ...: logging.error('error message')
+   ...: logging.critical('critical message')
+
+In [4]:
+
+In [4]: exit()
+[root@host54 test]# ll
+total 8
+-rw-r--r-- 1 root root 221 Nov 27 21:44 requirements.txt
+-rw-r--r-- 1 root root 399 Nov 29 09:09 test.log
+drwxr-xr-x 6 root root  87 Nov 27 21:18 venv001
+drwxr-xr-x 6 root root  87 Nov 27 21:46 venv002
+
+再次查看日志（日志默认是追加模式，不会覆盖之前的日志）
+内容及格式都发生了变化（时间戳、当前登录用户、日志级别、行号、对应级别打印的日志内容）
+[root@host54 test]# cat test.log
+WARNING:root:warning message
+ERROR:root:error message
+CRITICAL:root:critical message
+2020-11-29 09:09:56 root     DEBUG    [line: 1] debug message
+2020-11-29 09:09:56 root     INFO     [line: 2] info message
+2020-11-29 09:09:56 root     WARNING  [line: 3] warning message
+2020-11-29 09:09:56 root     ERROR    [line: 4] error message
+2020-11-29 09:09:56 root     CRITICAL [line: 5] critical message
+[root@host54 test]#
+
+
 
 ```
 
@@ -589,6 +709,67 @@ cc
 - python标准库-路径处理  
 
 ```
+In [1]: from random import *
+
+随机数：返回0.0 - 1.0之间的浮点数
+In [2]: random()
+Out[2]: 0.144908510413575
+
+随机打印数字：从0-100，步长为2(偶数)
+In [9]: randrange(0,101,2)
+Out[9]: 0
+
+In [10]: randrange(0,101,2)
+Out[10]: 76
+
+In [11]: randrange(0,101,2)
+Out[11]: 78
+
+In [12]: randrange(0,101,2)
+Out[12]: 42
+
+In [13]: randrange(0,101,2)
+Out[13]: 40
+
+In [14]: randrange(0,101,2)
+Out[14]: 74
+
+In [15]:
+
+
+随机抽取列表中的单个元素
+In [15]: choice(['aa','bb','cc'])
+Out[15]: 'bb'
+
+In [16]: choice(['aa','bb','cc'])
+Out[16]: 'aa'
+
+In [17]: choice(['aa','bb','cc'])
+Out[17]: 'aa'
+
+In [18]: choice(['aa','bb','cc'])
+Out[18]: 'bb'
+
+In [19]: choice(['aa','bb','cc'])
+Out[19]: 'cc'
+
+In [20]:
+
+
+随机抽取列表中多个元素
+In [20]: sample([1,2,3,4,5,6,7,8], k=4)
+Out[20]: [8, 4, 2, 3]
+
+In [21]: sample([1,2,3,4,5,6,7,8], k=4)
+Out[21]: [8, 5, 2, 3]
+
+In [22]: sample([1,2,3,4,5,6,7,8], k=4)
+Out[22]: [2, 4, 6, 8]
+
+In [23]: sample([1,2,3,4,5,6,7,8], k=4)
+Out[23]: [6, 2, 4, 1]
+
+In [24]:
 
 
 
@@ -708,10 +889,6 @@ if __name__ == "__main__":
 - 正则表达式  
 1）通读官方文档  
 https://docs.python.org/zh-cn/3.7/library/re.html  
-
-
-
-
 
 
 ```
