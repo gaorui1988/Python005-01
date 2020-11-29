@@ -14,7 +14,7 @@ def log_func():
     
     #文件路径
     dirPath = '/var/log/python-' + today
-    logfile = "log_func.log"
+    logfile = "test.log"
     
     #判断当前路径是否存在
     if not os.path.exists(dirPath):
@@ -28,15 +28,13 @@ def log_func():
                         datefmt='%Y-%m-%d %H:%M:%S',
                         format="%(asctime)s [%(name)s : %(message)s]"
                         )
-    #log_func函数被调用时
-    #现在/var/log路径下创建python-2020-11-29目录(命名python-系统当前日期)
-    #日志文件名：log_func.log
     logging.info('The log_func function is called .')
-    #终端的标准输出显示log_func函数被调用时的进程pid
-    sys.stdout.write('log_func function is called [ PID : %d ]\n' % os.getpid())
+    #获取当前进程pid
+    sys.stdout.write('Daemon started [ PID : %d ]\n' % os.getpid())
 
-#if __name__ == '__main__':
-#    log_func()
+    
+if __name__ == '__main__':
+    log_func()
 
 
 
