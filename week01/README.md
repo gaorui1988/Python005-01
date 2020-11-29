@@ -1,13 +1,12 @@
-- 学习笔记
+## 学习笔记
 
 
 
 
 
-- 本周作业
+## 本周作业
 
-
-1、建立自己的 Python 开发环境
+- 建立自己的 Python 开发环境
 正确安装 Python3.7 和 pip, 正确配置环境变量，并能够查看 Python 的版本（Linux 可以使用虚拟机或最低配置的公有云主机）。
 ```
 [root@host54 Python005-01]# cat /etc/redhat-release 
@@ -39,7 +38,7 @@ alias ipython='python3 -m IPython'
 
 
 
-2、熟悉 Visual Studio Code 或者 PyCharm 等任一 IDE 的使用, 熟练配置虚拟环境，并能够使用 debug 和 run 功能运行和调试程序。
+- 熟悉 Visual Studio Code 或者 PyCharm 等任一 IDE 的使用, 熟练配置虚拟环境，并能够使用 debug 和 run 功能运行和调试程序。
 ```
 
 //IDE
@@ -51,7 +50,7 @@ Remote - SSH远程Linux插件
 ```
 
 
-3、通过 Python 官方文档, 找到 Python 支持的基本数据类型，并列举各类型的定义和赋值操作（可以通过文本文档或思维导图形式提交总结）。
+- 通过 Python 官方文档, 找到 Python 支持的基本数据类型，并列举各类型的定义和赋值操作（可以通过文本文档或思维导图形式提交总结）。
 ```
 
 标准数据类型
@@ -73,8 +72,7 @@ Python3 的六个标准数据类型中：
 
 ```
 
-4、（此作业需提交至 GitHub）
-编写一个函数, 当函数被调用时，将调用的时间记录在日志中, 日志文件的保存位置建议为：/var/log/python- 当前日期 /xxxx.log
+- 编写一个函数, 当函数被调用时，将调用的时间记录在日志中, 日志文件的保存位置建议为：/var/log/python- 当前日期 /xxxx.log (此作业需提交至 GitHub)
 ```
 #!/usr/bin/env python
 
