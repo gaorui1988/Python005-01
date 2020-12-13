@@ -1,9 +1,28 @@
-## 学习笔记  
+
+
+# 学习笔记  
 
 
 
-- MySQL安装  
-```
+
+
+
+
+
+
+
+
+
+
+## MySQL安装  
+
+
+
+
+
+
+
+```bash
 //yum 安装MySQL community 5.7.2
 
 //安装MySQL社区版release包（安装后会生成repo源）
@@ -114,10 +133,9 @@ Bye
 ```
 
 - 正确使用MySQL字符集  
+
 ```
-
 //字符集
-
 
 
 
@@ -133,5 +151,198 @@ Bye
 
 
 
+```
+
+
+
+
+
+
+
+
+
+## PyMsql增删改查操作
+
+**mod3_pymsql_conn.py**
+
+```python
+#!/usr/bin/python3
+# PyMYSQL 连接 MySQL 数据库
+# pip3 install PyMySQL
+
+#导入python连接MySQL第三方库
+import pymysql
+
+# 打开数据库连接
+# mysql> create database testdb;
+# mysql> GRANT ALL PRIVILEGES ON testdb.* TO 'testuser'@'%' IDENTIFIED BY 'testpass';
+
+db = pymysql.connect("server1","testuser","testpass","testdb" )
+ 
+try:
+
+    # 使用 cursor() 方法创建一个游标对象 cursor
+    with db.cursor() as cursor:
+        sql = '''SELECT VERSION()'''
+        # 使用 execute()  方法执行 SQL 查询 
+        cursor.execute(sql)
+        result = cursor.fetchone()
+    db.commit()
+
+except Exception as e:
+    print(f"fetch error {e}")
+
+finally: 
+    # 关闭数据库连接
+    db.close()
+
+ 
+print (f"Database version : {result} ")
 
 ```
+
+
+
+**mod3_pymsql_insert.py**
+
+```python
+#!/usr/bin/python3 
+import pymysql
+ 
+db = pymysql.connect("server1","testuser","testpass","testdb")
+ 
+try:
+
+    # %s是占位符
+    with db.cursor() as cursor:
+        # 拼接SQL语句（对于pymysql，插入数字、字符串都是使用"%s"占位符）
+        sql = 'INSERT INTO book (id, name) VALUES (%s, %s)'
+        # 支持插入中文（需支持UTF-8的字符集）
+        value = (1002, "活着")
+        cursor.execute(sql, value)
+    # pymysql提交还是要用commit的显式提交（隐式提交：提交已经被封装到SQLAlchemy中）
+    db.commit()
+
+except Exception as e:
+    print(f"insert error {e}")
+
+finally: 
+    # 关闭数据库连接
+    db.close()
+    #返回查询结果集当中的行数（并不是当前表中有多少行数据，是当前游标操作后作用的行数）
+    print(cursor.rowcount)
+
+
+```
+
+
+
+**mod3_pymysql_query.py**
+
+```python
+#!/usr/bin/python3 
+import pymysql
+ 
+db = pymysql.connect("server1","testuser","testpass","testdb" )
+ 
+try:
+
+    # %s是占位符
+    with db.cursor() as cursor:
+        sql = '''SELECT name FROM book'''
+        cursor.execute(sql)
+        
+        # fetchall() 匹配的数据集当中的所有行
+        # fetchone() 匹配的数据集当中的一行
+        books = cursor.fetchall() 
+        # for迭代元组中的值
+        for book in books: 
+            print(book)
+    db.commit()
+
+except Exception as e:
+    print(f"insert error {e}")
+
+finally: 
+    # 关闭数据库连接
+    db.close()
+    print(cursor.rowcount)
+
+
+```
+
+
+
+**mod3_pymysql_update.py**
+
+```python
+#!/usr/bin/python3 
+import pymysql
+ 
+db = pymysql.connect("server1","testuser","testpass","testdb" )
+ 
+try:
+
+    # %s是占位符
+    with db.cursor() as cursor:
+        
+        # SQL与python之间的思维转换（下面这个执行是不生效的）
+        # sql = 'UPDATE book SET name = %s' WHERE id = %s
+        # value = ("活着", 1003)
+        
+        # 正确的更新SQL
+        sql = 'UPDATE book SET id = %s WHERE name = %s'
+        value = (1003, "活着")
+        cursor.execute(sql, value)
+    db.commit()
+
+except Exception as e:
+    print(f"insert error {e}")
+
+finally: 
+    # 关闭数据库连接
+    db.close()
+    print(cursor.rowcount)
+
+
+```
+
+
+
+**mod3_pymsql_delete.py**
+
+```python
+#!/usr/bin/python3 
+import pymysql
+ 
+db = pymysql.connect("server1","testuser","testpass","testdb" )
+ 
+try:
+
+    # %s是占位符
+    with db.cursor() as cursor:
+        sql = 'DELETE FROM book WHERE name = %s'
+        value = ("活着")
+        cursor.execute(sql, value)
+    db.commit()
+
+except Exception as e:
+    print(f"insert error {e}")
+
+finally: 
+    # 关闭数据库连接
+    db.close()
+    # 这里也是判断上面的SQL操作是否正常执行
+    print(cursor.rowcount)
+
+
+```
+
+> 使用pymysql操作数据库时，大部分的结构代码是不需要去改变，唯一要改变的是我们编写的SQL，以及去填入的占位符（通过外部的应用程序，或是用户输入）。
+>
+> 自己写的python程序，相互调用进行处理的时候，可以通过函数的参数进行直接处理；如果是用户输入的话，输入之前需要做一些检测（比如，用户输入的内容是否合法，用户输入的内容是不是SQL注入等安全性的问题），这样才更适用与企业中的一些应用
+
+
+
+
+
