@@ -8,17 +8,7 @@
 
 
 
-
-
-
-
-
-
-## MySQL安装  
-
-
-
-
+### MySQL安装  
 
 
 
@@ -132,26 +122,150 @@ Bye
 
 ```
 
-- 正确使用MySQL字符集  
+> 调整默认密码策略
 
-```
+### MySQL字符集 
+
+```mysql
+
 //字符集
 
+查看字符集：
+mysql> show variables like '%character%';
+查看校对规则
+mysql> show variables like 'collation_%';
+```
+
+> MySQL 中的 utf8 不是 UTF-8 字符集
 
 
 
 
+
+### 连接MySQL数据库
+
+- Python3 连接 MySQL
+- 其他DB-API
+- 使用ORM
+- 
+
+```bash
+
+Python3 连接 MySQL： • Python3 安装的 MySQLdb 包叫做 mysqlclient，加载的依然是 MySQLdb
+shell> pip install mysqlclient
+python> import MySQLdb
+
+其他DB-API
+shell> pip install pymysql # 流行度最高
+shell> pip install mysql-connector-python # MySQL官方
+
+使用ORM：
+shell> pip install sqlalchemy
+
+PyMySQL 和 SQLAlchemy 连接 MySQL 数据库对比：
+pymysql.connect("server1","testuser","testpass","testdb" )
+engine=create_engine("mysql+pymysql://... ...",echo=True)
 ```
 
 
-- 多种方式连接MySQL数据库  
-
-```
 
 
 
+### 必要SQL知识
 
-```
+- SQL语言功能划分
+
+> DQL：Data Query Language，数据查询语言，开发工程师学习的重点。
+>
+> DDL：Data Definition Language，数据定义语言，操作库和表结构。
+>
+> DML：Data Manipulation Language，数据操作语言，操作表中记录。
+>
+> DCL：Data Control Language，数据控制语言， 安全和访问权限控制。
+
+
+
+- SELECT查询时关键字的顺序
+
+  SELECT ... FROM ... WHERE ... GROUP BY ... HAVING ... ORDER BY …LIMIT
+
+> 生产环境下因为列数相对较多，一般禁用 SELECT *
+>
+> WHERE字段为避免全表扫描，一般需要增加索引
+
+
+
+- SQL 函数
+
+  算术函数、字符串函数、日期函数、转换函数、聚合函数
+
+> **聚合函数**:聚合函数忽略空行
+>
+> COUNT() : 行数
+>
+> MAX() : 最大值
+>
+> MIN() : 最小值
+>
+> SUM() : 求和
+>
+> AVG() : 平均值
+
+
+
+- 子查询
+
+  需要从查询结果集中再次进行查询，才能得到想要的结果。
+
+> 关联子查询与非关联子查询区别。
+>
+> 何时使用 IN，何时使用 EXISTS
+
+
+
+- 常见的连接（JOIN）
+
+> 自然连接
+>
+> ON 连接
+>
+> USING 连接
+>
+> 外连接
+>
+> 左外连接
+>
+> 右外连接
+>
+> 全外连接（MySQL 不支持）
+
+
+
+- 事务
+
+  要么全执行，要么不执行
+
+- 事务的特性 - ACID
+
+> A  原子性（Atomicity） 
+>
+> C  一致性（Consistency） 
+>
+> I  隔离性（Isolation） 
+>
+> D  持久性（Durability）
+
+
+
+- 事务的隔离级别
+
+> 读未提交：允许读到未提交的数据
+>
+> 读已提交：只能读到已经提交的内容
+>
+> 可重复读：同一事务在相同查询条件下两次查询得到的数据结果一致
+>
+> 可串行化：事务进行串行化，但是牺牲了并发性能
 
 
 
@@ -161,7 +275,21 @@ Bye
 
 
 
-## PyMsql增删改查操作
+### python 操作MySQL
+
+
+
+- 使用 PyMySQL 进行 MySQL 的增、删、改、查
+
+- 使用 PyMySQL 取出多行数据
+
+- 使用 SQLAlchemy 进行 MySQL 的增、删、改、查
+
+- 使用 Django 进行 MySQL 的增、删、改、查
+
+
+
+### PyMsql增删改查操作
 
 **mod3_pymsql_conn.py**
 
